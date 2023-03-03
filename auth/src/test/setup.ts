@@ -26,11 +26,12 @@ beforeEach(async () => {
   }
 });
 
-afterAll(async () => {
+afterAll(done => {
   if (mongo) {
-    await mongo.stop();
+    mongo.stop();
   }
-  await mongoose.connection.close();
+  mongoose.connection.close();
+  done()
 });
 
 global.signin = async () => {
